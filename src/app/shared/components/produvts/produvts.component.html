@@ -1,0 +1,43 @@
+<h1 class="bg-info text-center text-white text-uppercase p-3">product status change by using service</h1>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            
+                <div class="form-group">
+                    <label for="pname">pname</label>
+                    <input type="text" #pname class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="pdesc">pdesc</label>
+                    <input type="text" #pdesc class="form-control">
+                </div>
+                <div class="text-right">
+                    <button class="btn btn-primary" (click)="onAddProducts(pname,pdesc)">add product</button>
+                </div>
+         
+        </div>
+        <!-- cards -->
+        <div class="col-md-6" *ngIf="productsArray.length >0;else para">
+            <div class="card mb-2" *ngFor="let s of productsArray">
+                <div class="card-header">
+                       <p>product name is  <strong class="text-uppercase">{{s.pdesc}}</strong> </p>
+                     
+                </div>
+                <div class="card-body">
+                  <p>{{s.pdesc}}</p>  
+                    <p >product status is <strong>{{s.pStatus}}</strong> </p>
+                </div>
+                <div class="card-footer">
+                    <button class="btn btn-primary mr-2" (click)="onproductStatus(s.pId,productStatus.inProgress)">inProgress</button>
+                    <button class="btn btn-primary mr-2" (click)="onproductStatusdelivered(s.pId,productStatus.delivered)">delivered</button>
+                    <button class="btn btn-primary mr-2" (click)="onproductStatusdispatched(s.pId,productStatus.dispatched)">dispatched</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #para >
+    <p class="alert alert-info">no product is addeed </p>
+</ng-template>
